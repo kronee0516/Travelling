@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/item11"
-        android:title="New Month"
-        />
+
+    <item
+        android:id="@+id/addmonth"
+        android:title="ADD ITEM(TESTING)">
+
+    </item>
 </menu>

@@ -1,6 +1,7 @@
 package com.example.travelling;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -39,13 +40,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addFile(){
 
-    }
 
     @Override
-    protected  void onActivityResult(int requestCode , int resultCode , Intent data){
+    protected  void onActivityResult(int requestCode , int resultCode , Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (requestCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+            } else {
 
+            }
+        }
     }
 
     @Override
@@ -59,11 +65,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         Intent intent = new Intent(this, SelectMonth.class);
         switch(item.getItemId()){
-            case R.id.item0:
-                addFile();
-            case R.id.item1:
+            case R.id.slot_1_select_month:
+
+                startActivity(intent);
+                break;
+                //startActivityForResult(i,1);
+            case R.id.slot_2_add_record:
                 TextView tv = findViewById(R.id.tv1);
                 tv.setText("Changed");break;
+            case R.id.slot_3_output:
+                break;
             default:
                 break;
         }

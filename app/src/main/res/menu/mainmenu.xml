@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/item0"
+    <item android:id="@+id/slot_1_select_month"
         android:title="Select Month"
         />
-    <item android:id="@+id/item1"
+    <item android:id="@+id/slot_2_add_record"
         android:title="Add Record"
     />
-    <item android:id="@+id/item2"
+    <item android:id="@+id/slot_3_output"
         android:title="Output"
         />
 
