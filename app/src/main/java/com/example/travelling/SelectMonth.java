@@ -12,8 +12,12 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,16 +28,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.System.exit;
 
 public class SelectMonth extends AppCompatActivity {
-    List<String> fileSet = new ArrayList<>();
-    List<String> datas = new ArrayList<>();
-    //TextView textView;
 
-    String selectedTxt;
     Calendar calendar = Calendar.getInstance();
     int thisYear = calendar.get(Calendar.YEAR);
     int thisMonth = calendar.get(Calendar.MONTH);
@@ -48,13 +49,12 @@ public class SelectMonth extends AppCompatActivity {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_select_month);
-            //testforput();
-            //nitViews();
-            //loadDatas();
+
 
             recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         layoutManager = new LinearLayoutManager(this);
+
         recyclerView.setLayoutManager(layoutManager);
 
         //String[] myDataset = {"test1","test2","test3","test4","test5","test6","test7","test8","test9"};
@@ -71,20 +71,32 @@ public class SelectMonth extends AppCompatActivity {
         //Code of getting file name from storage
         //And add to the list to show
 
+
+
+
+
         DateCard dc = new DateCard();
-
-
         dc.setText("Test1");
         dcList.add(dc);
 
+        dc = new DateCard();
         dc.setText("Test2");
         dcList.add(dc);
 
+        dc = new DateCard();
         dc.setText("Test3");
         dcList.add(dc);
 
+        dc = new DateCard();
         dc.setText("Test4");
         dcList.add(dc);
+        Collections.reverse(dcList);
+
+
+        /*TextView tv = (TextView)findViewById(R.id.debug);
+        for(int j =0 ; j<4;j++) {
+            tv.setText(tv.getText()+dcList.get(j).getText());
+        }*/
 
         return dcList;
     }
@@ -108,7 +120,9 @@ public class SelectMonth extends AppCompatActivity {
 
         DateCard dc = new DateCard();
         dc.setText(fn);
+        Collections.reverse(dcList);//Return to normal order
         dcList.add(dc);
+        Collections.reverse(dcList);//Set reverse order for display
         mAdapter.notifyDataSetChanged();
     }
 
@@ -119,11 +133,11 @@ public class SelectMonth extends AppCompatActivity {
         //textView.setText(textView.getText()+"\n"+thisMonth+" "+thisYear);
         try{
             String current_month = thisMonth+"_"+thisYear;
-            File internalStorage = new File(Environment.getExternalStorageState());
-            internalStorage.mkdir();
+            File internalStorage = new File(this.getFilesDir(),"files");
+            internalStorage.mkdirs();
             String path = internalStorage.getAbsolutePath();
             TextView tv = findViewById(R.id.debug);
-            tv.setText("path");
+            tv.setText(path);
             //continue
             if(path.contains(current_month)){
                 //toast message file already exist
