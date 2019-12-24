@@ -144,7 +144,7 @@ public class SelectMonth extends AppCompatActivity {
                 tv.setText(tv.getText()+"\n"+fortest[i].getName());
                 if(fortest[i].toString().contains(current_month)){
                     //toast message file already exist
-                    Toast.makeText(this, "The file already exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "The file already exists", Toast.LENGTH_SHORT).show();
 
                     //and exit this method
                     return;
