@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -101,7 +102,7 @@ public class SelectMonth extends AppCompatActivity {
         return dcList;
     }
 
-    /*rivate void loadDatas(){
+    /*private void loadDatas(){
 
         String[] fileList = this.fileList();
         if(fileList.length>0) {
@@ -134,36 +135,50 @@ public class SelectMonth extends AppCompatActivity {
         try{
             String current_month = thisMonth+"_"+thisYear;
             File internalStorage = new File(this.getFilesDir(),"files");
-            internalStorage.mkdirs();
+            internalStorage.mkdir();
+            File[] fortest = internalStorage.listFiles();
             String path = internalStorage.getAbsolutePath();
             TextView tv = findViewById(R.id.debug);
             tv.setText(path);
-            //continue
-            if(path.contains(current_month)){
-                //toast message file already exist
-                Toast.makeText(this, "The file already exist", Toast.LENGTH_SHORT).show();
+            for(int i =0 ; i<fortest.length ; i++){
+                tv.setText(tv.getText()+"\n"+fortest[i].getName());
+                if(fortest[i].toString().contains(current_month)){
+                    //toast message file already exist
+                    Toast.makeText(this, "The file already exist", Toast.LENGTH_SHORT).show();
 
-                //and exit this method
-                return;
+                    //and exit this method
+                    return;
+                }
+
             }
+           //tv.setText(path);
+            //continue
 
 
 
-            FileOutputStream fos = getApplicationContext().openFileOutput(current_month+".txt",this.MODE_PRIVATE);
+            File nf = new File(internalStorage,current_month+".txt");
+            FileWriter fw = new FileWriter(nf);
+            fw.append("aba");
+            fw.flush();
+            fw.close();
+          /*  FileOutputStream fos = getApplicationContext().openFileOutput(nf);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
 
         //osw.write("test1"+","+"test2"+","+"test3"+"\n"+"2test1"+"2test2");
             osw.close();
-            fos.close();
+            fos.close();*/
 
-            addFile(current_month);
+            addFile(nf.toString());
         }
-        catch(FileNotFoundException fnfe){
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+       /* catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
         }
         catch(IOException io){
             io.printStackTrace();
-        }
+        }*/
 
 
 
