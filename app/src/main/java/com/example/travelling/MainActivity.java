@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,13 +46,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected  void onActivityResult(int requestCode , int resultCode , Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        switch (requestCode) {
+            case 1:
             if (requestCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra("result");
             } else {
 
             }
+            break;
+
+            case 2:
+
+            break;
+
+            default:
+            break;
         }
+
     }
 
     @Override
@@ -63,16 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent intent = new Intent(this, SelectMonth.class);
+        Intent intent;
         switch(item.getItemId()){
             case R.id.slot_1_select_month:
-
+                intent = new Intent(this, SelectMonth.class);
                 startActivity(intent);
                 break;
                 //startActivityForResult(i,1);
             case R.id.slot_2_add_record:
-                TextView tv = findViewById(R.id.tv1);
-                tv.setText("Changed");break;
+                intent = new Intent(this, AddRecord.class);
             case R.id.slot_3_output:
                 break;
             default:

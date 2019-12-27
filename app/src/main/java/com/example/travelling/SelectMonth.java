@@ -1,11 +1,12 @@
 package com.example.travelling;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,28 +73,21 @@ public class SelectMonth extends AppCompatActivity {
         //Code of getting file name from storage
         //And add to the list to show
 
-
+        File internalStorage = new File(this.getFilesDir(),"files");
+        internalStorage.mkdir();
+        File[] fileList = internalStorage.listFiles();
 
 
 
         DateCard dc = new DateCard();
-        dc.setText("Test1");
-        dcList.add(dc);
 
-        dc = new DateCard();
-        dc.setText("Test2");
-        dcList.add(dc);
+        for(int i = 0 ; i<fileList.length ; i++){
+            dc = new DateCard();
+            dc.setText(fileList[i].getName());
+            dcList.add(dc);
+        }
 
-        dc = new DateCard();
-        dc.setText("Test3");
-        dcList.add(dc);
-
-        dc = new DateCard();
-        dc.setText("Test4");
-        dcList.add(dc);
         Collections.reverse(dcList);
-
-
         /*TextView tv = (TextView)findViewById(R.id.debug);
         for(int j =0 ; j<4;j++) {
             tv.setText(tv.getText()+dcList.get(j).getText());
@@ -144,7 +138,25 @@ public class SelectMonth extends AppCompatActivity {
                 tv.setText(tv.getText()+"\n"+fortest[i].getName());
                 if(fortest[i].toString().contains(current_month)){
                     //toast message file already exist
-                    Toast.makeText(this, "The file already exists", Toast.LENGTH_SHORT).show();
+
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int bol){
+                            switch(bol){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //return to main and set to current month file
+                                    break;
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    break;
+                            }
+                        }
+
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Current month file has been already created. Return to current record?").
+                            setNegativeButton("No",dialogClickListener).
+                            setPositiveButton("Yes",dialogClickListener).
+                            show();
 
                     //and exit this method
                     return;

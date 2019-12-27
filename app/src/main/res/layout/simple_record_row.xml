@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
-    android:orientation="vertical">
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -17,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             <TextView
+                android:id="@+id/date_col"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date"
@@ -25,14 +24,16 @@
                 android:gravity="center"
                 ></TextView>
             <TextView
+                android:id="@+id/client_col"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clients"
+                android:text="Client"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:gravity="center"
                 ></TextView>
             <TextView
+                android:id="@+id/cost_col"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cost"
@@ -42,14 +43,4 @@
                 ></TextView>
         </TableRow>
     </TableLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_main"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:stackFromEnd="true"
-        app:reverseLayout="true"
-
-        />
-</LinearLayout>
+</androidx.cardview.widget.CardView>

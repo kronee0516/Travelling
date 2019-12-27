@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="date_text" type="id">date_text</item>
+    <item name="client_text" type="id">client_text</item>
+    <item name="from_text" type="id">from_text</item>
+    <item name="to_text" type="id">to_text</item>
+    <item name="cost_text" type="id">cost_text</item>
+    <item name="remarks_text" type="id">remarks_text</item>
+</resources>
